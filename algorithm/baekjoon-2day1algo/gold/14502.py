@@ -27,7 +27,7 @@ def check_safe_area(arr, N, M):  # 배열, 행크기, 열크기
     for row in range(N):
         for col in range(M):
             # 요소가 0일때만 체크
-            if arr[row][col] == 0:    
+            if arr[row][col] == 0:
                 # 상하좌우 4번 체크하기
                 for idx in range(4):
                     # 바이러스를 만났는지 여부를 체크할 flag
@@ -60,10 +60,10 @@ def check_safe_area(arr, N, M):  # 배열, 행크기, 열크기
                 if flag == False:
                     total_safe_cnt += 1
 
-            # 요소가 1이거나 2면 패스      
+            # 요소가 1이거나 2면 패스
             else:
                 continue
-    
+
     return total_safe_cnt
 
 # 벽을 새로 세울 구역을 뽑는 함수
@@ -77,8 +77,8 @@ def pick_new_building_area():
             # 요소가 2일 체크
             if arr[row][col] == 2:
                 two_loc_set.append([row, col])
-    
+
     # 2의 상하좌우 중에 벽 세우기
     for curr_two in two_loc_set:
 
-                
+
