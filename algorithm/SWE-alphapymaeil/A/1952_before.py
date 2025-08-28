@@ -1,3 +1,4 @@
+# 이 버전은 greedy => 최적해 못찾음
 import sys
 
 sys.stdin = open("1952_input.txt")
