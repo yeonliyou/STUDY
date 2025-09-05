@@ -31,8 +31,8 @@ def calculate_honey(honey_set, C, M):
             M -= 1
 
     return m
-    
-    
+
+
 for t in range(1, T+1):
     # 벌통 크기, 선택할 벌통 개수, 최대 꿀의 양
     N, M, C = map(int, input().split())
@@ -40,7 +40,7 @@ for t in range(1, T+1):
     # 벌꿀 정보 배열 만들기
     arr = []
     # 조합별로 벌꿀양을 기록하기 위한 배열
-    comb_arr = list(0 for _ in range(N*N))
+    comb_arr = []
 
     for _ in range(N):
         arr.append(list(map(int, input().split())))
@@ -55,7 +55,7 @@ for t in range(1, T+1):
             if c + M <= N:
                 # 현재 벌꿀 조합
                 temp_honey_list = arr[r][c:c+M]
-                
+
                 # 현재 벌꿀 조합으로 얻어지는 최대 꿀양
                 temp_honey = calculate_honey(temp_honey_list, C, M)
                 comb_arr.append(temp_honey)
@@ -66,7 +66,7 @@ for t in range(1, T+1):
 
             # 한칸 옆으로 이동
             c += 1
-                
+
     # 답 초기화
     anw = 0
 
