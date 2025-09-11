@@ -5,18 +5,16 @@ T = int(input())
 
 # K개 연속 체크 탐색 함수
 def check_Kcnt(arr, D, W):
-    # 전부 검사 톻과 여부
+    # 전부 검사 통과 여부
     flag = True
 
     # 열 하나씩 통과할 수 있는 지 체크
     for c in range(W):
         for r in range(D):
 
-        dp =
 # 최소 약품 처리 찾는 함수
 def find_min_drug():
-
-
+    
 
 
 for x in range(1, T+1):
@@ -33,6 +31,6 @@ for x in range(1, T+1):
 
     # K가 2 이상일 때만 dfs 함수 돌리기
     if K != 1:
-        dfs()
+
 
     print(f"#{x}", anw)
