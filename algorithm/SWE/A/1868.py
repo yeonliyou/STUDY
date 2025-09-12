@@ -17,42 +17,40 @@ dx = [-1, 1, 0, 0, -1, 1, -1, 1]
 dy = [0, 0, -1, 1, -1, -1, 1, 1]
 
 # delta 방향 탐색해서 숫자 채워주는 함수
-def bfs(arr, cnt, r, c):
+def bfs(arr, cnt, q):
     # 주변 8방향 모두 지뢰가 없었는지를 체크하는 플래그
     flag = True
-
-    # 0으로 바꿔주는 함수들 
-    q = deque([(r,c)])
 
     # 지뢰 몇개인지 세는 변수
     num = 0
 
+    # q가 빌 때까지 돌기
     while q:
         r, c = q.popleft()
 
-        cnt += 1
-
         for idx in range(8):
-            n_r = r + dx[idx]   
-            n_c = c + dy[idx] 
+            n_r = r + dx[idx]
+            n_c = c + dy[idx]
 
             # 좌표 존재시
             if 0 <= n_r < N and 0 <= n_c < N:
                 # 만약 지뢰를 발견했다면
                 if arr[n_r][n_c] == '*':
                     flag = False
-                    num += 1
                 # 지뢰가 아니라면
                 else:
                     q.append((n_r,n_c))
-        
-        # 주변 8방향 모두 지뢰가 없었다면 (그 저장해논 좌표들 다 0으로 바꿔주기)
-        if flag == True:
-            for l in q:
-                arr[l[0]][l[1]] = 0
-                bfs(arr, cnt, l[0], l[1])
-        else:
-            arr[r][c] = num
+
+    # 주변 8방향 모두 지뢰가 없었다면 (그 저장해논 좌표들 다 0으로 바꿔주기)
+    if flag == True:
+        arr[r][c] = 0
+        for curr_loc in q:
+            arr[curr_loc[0]][curr_loc[1]] = 0
+        bfs(arr, cnt, q)
+
+    # 지뢰가 하나라도 있었으면 1 넣어주고 중지
+    else:
+        arr[r][c] = 1
 
 
 for x in range(1, T+1):
@@ -67,9 +65,14 @@ for x in range(1, T+1):
     # 1. 모든 지점으로 부터 0으로 바꿀 수 있는 것들 체크
     for r in range(N):
         for c in range(N):
+            # 지뢰가 아닐 때만 bfs 돌기
             if arr[r][c] != '*':
-                bfs(arr, cnt, r, c)
-    
+
+                # 0으로 바꿔주는 함수들
+                q = deque([(r,c)])
+
+                bfs(arr, cnt, q)
+
     # 2. '.'은 각각 한 번씩 눌러야 함
     for r in range(N):
         for c in range(N):
